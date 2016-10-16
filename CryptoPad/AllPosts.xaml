@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoPad"
         mc:Ignorable="d"
-        Title="AllPosts" Height="600" Width="750" ResizeMode="NoResize">
+        Title="AllPosts" Height="600" Width="750" ResizeMode="NoResize" Closing="Window_Closing">
     
     <Window.CommandBindings>
-        <CommandBinding Command="Close" Executed="CloseCommandHandler" CanExecute="CloseCommand_CanExecuted"></CommandBinding>
         <CommandBinding Command="Copy" Executed="CopyCommandHandler" CanExecute="CopyCommand_CanExecuted"></CommandBinding>
         <CommandBinding Command="local:MyCommands.AddPostCommand"  Executed="AddPostCommandHandler" CanExecute="AddPostCommand_CanExecuted"></CommandBinding>
 

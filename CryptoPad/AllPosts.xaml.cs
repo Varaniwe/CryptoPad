@@ -75,13 +75,7 @@ namespace CryptoPad
         }
 
         private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream())
-            {
-                bf.Serialize(ms, PostsList.ToList());
-                MainWindow.SaveAndExit(Properties.Settings.Default.PathToFile + "_allposts", ms.ToArray());
-            }
+        {           
             Close();            
         }
 
@@ -118,6 +112,16 @@ namespace CryptoPad
             e.CanExecute = !string.IsNullOrWhiteSpace(newPostTextBox.Text);
         }
 
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bf.Serialize(ms, PostsList.ToList());
+                MainWindow.SaveAndExit(Properties.Settings.Default.PathToFile + "_allposts", ms.ToArray());
+            }
+        }
+
         #region INotifyPropertyChanged implementation
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string propertyName)
@@ -126,5 +130,6 @@ namespace CryptoPad
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
     }
 }
